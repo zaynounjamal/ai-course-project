@@ -1,0 +1,382 @@
+/* Modern Black & Gold Theme - Core Design System */
+:root {
+    /* Color System */
+    --black-primary: #000000;
+    --black-secondary: #1A1A1A;
+    --black-tertiary: #2A2A2A;
+    --gold-primary: #FFD700;
+    --gold-secondary: #F4B41A;
+    --gold-accent: #C6930A;
+    --text-light: #FFFFFF;
+    --text-muted: #CCCCCC;
+    --gradient-gold: linear-gradient(135deg, var(--gold-primary), var(--gold-secondary));
+    
+    /* Typography */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Montserrat', sans-serif;
+    
+    /* Animations */
+    --transition-fast: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+    
+    /* Spacing */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 2rem;
+    --space-lg: 4rem;
+}
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--black-primary);
+    color: var(--text-light);
+    font-family: var(--font-body);
+    line-height: 1.6;
+}
+
+/* Enhanced Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--gold-primary);
+    margin-bottom: var(--space-md);
+    line-height: 1.2;
+}
+
+h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+h2 { font-size: clamp(2rem, 4vw, 3rem); }
+h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+
+/* Navigation System */
+.nav-main {
+    position: fixed;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--gold-accent);
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--space-sm) var(--space-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-size: 1.5rem;
+    color: var(--gold-primary);
+    text-decoration: none;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: var(--space-md);
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--text-light);
+    text-decoration: none;
+    position: relative;
+    padding: 0.5rem 0;
+    font-weight: 500;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gold-primary);
+    transition: var(--transition-fast);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Enhanced Button System */
+.btn {
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary {
+    background: var(--gradient-gold);
+    color: var(--black-primary);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 2px solid var(--gold-primary);
+    color: var(--gold-primary);
+}
+
+.btn-secondary:hover {
+    background: var(--gold-primary);
+    color: var(--black-primary);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.2);
+}
+
+/* Card System */
+.card {
+    background: var(--black-secondary);
+    border-radius: 12px;
+    padding: var(--space-md);
+    border: 1px solid var(--gold-accent);
+    transition: var(--transition-fast);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.1);
+}
+
+/* Grid System */
+.grid {
+    display: grid;
+    gap: var(--space-md);
+}
+
+@media (min-width: 768px) {
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Form Elements */
+.form-group {
+    margin-bottom: var(--space-md);
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--black-tertiary);
+    border: 1px solid var(--gold-accent);
+    border-radius: 6px;
+    color: var(--text-light);
+    transition: var(--transition-fast);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--gold-primary);
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(
+        to bottom,
+        var(--black-primary),
+        var(--black-secondary)
+    );
+    position: relative;
+    overflow: hidden;
+    padding: var(--space-lg) 0;
+}
+
+/* Enhanced Footer */
+.footer {
+    background: var(--black-secondary);
+    padding: var(--space-lg) 0;
+    margin-top: var(--space-lg);
+    border-top: 1px solid var(--gold-accent);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-md);
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+}
+
+.footer-section {
+    margin-bottom: var(--space-md);
+}
+
+.footer-section h3 {
+    color: var(--gold-primary);
+    margin-bottom: var(--space-sm);
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+/* Enhanced Footer Links */
+.footer-link {
+    color: var(--gold-primary);
+    text-decoration: none;
+    transition: var(--transition-fast);
+    position: relative;
+    width: fit-content;
+    padding-bottom: 4px;
+}
+
+.footer-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gold-secondary);
+    transition: var(--transition-fast);
+}
+
+.footer-link:hover {
+    color: var(--gold-secondary);
+}
+
+.footer-link:hover::after {
+    width: 100%;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .mobile-menu { display: block; }
+    .grid { grid-template-columns: 1fr; }
+}
+/* Course Media Styles */
+.course-media {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+/* Video Styles */
+.course-media video {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    background: var(--black-tertiary);
+}
+
+/* PDF Preview Styles */
+.pdf-preview {
+    position: relative;
+    height: 300px;
+}
+
+.pdf-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pdf-download {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold-primary);
+    color: var(--black-primary);
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition-fast);
+}
+
+.pdf-download:hover {
+    background: var(--gold-secondary);
+    transform: translateX(-50%) translateY(-3px);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+/* Interactive Module Styles */
+.course-media.interactive {
+    height: 400px;
+    background: var(--black-tertiary);
+}
+
+.course-media.interactive iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Course Grid Layout */
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+/* Course Card Enhancements */
+.course-card {
+    background: var(--black-secondary);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: var(--transition-fast);
+    border: 1px solid var(--gold-accent);
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.1);
+}
+
+/* Media Controls */
+video::-webkit-media-controls {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .course-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .course-media {
+        height: 250px;
+    }
+}
